@@ -37,18 +37,20 @@ for k in range(2,100):
     silhouettes.append(sil)
     labels.append(lab)
     db_score.append(db)
-
+x = [k for k in range(2,100)]
 print("silhouettes = ",silhouettes)
 sns.set_theme()
-sns.lineplot(x = range(len(silhouettes)),y = silhouettes, color = "orange")
+sns.lineplot(x = x, y = silhouettes, color = "orange")
 plt.xlabel('nombre de clusters')
 plt.legend(labels = ["silhouette score"])
 plt.ylabel('silhouette score')
 plt.savefig('silhouette_score.png')
 plt.clf()
 
-sns.lineplot(x = range(len(db_score)), y = db_score, color = "blue")
+sns.lineplot(x = x, y = db_score, color = "blue")
 plt.xlabel('nombre de clusters')
 plt.legend(labels = ["Davies-Bouldin score"])
 plt.ylabel('Davies-Bouldin score')
 plt.savefig('Davies_Bouldin_score.png')
+
+np.save('clusters.npy',np.array(labels))
